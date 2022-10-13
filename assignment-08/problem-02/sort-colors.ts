@@ -1,45 +1,51 @@
 /*
     ? Problem Statement: Q2 of Assignment sheet.
 
-    ! Time Complexity:
-        ! - Average/Best Case: Theta(n log n)
-        ! - Worst Case: O(n^2)
-
+    ! Time Complexity: O(n)
     ! Space Complexity: O(1)
-
-    ? Note: We are using a recursive call here so it would automatically take O(log n) space to store the function calls in a stack.
+    ! Algo used: Counting Sort
 */
 
-// * This function is used to put the pivot into its right position and also divide the array into a lower half and greater half.
-const partition = (nums: Array<number>, lb: number, ub: number): number => {
-    const pivot = nums[lb];
+// * Here we are implementing counting sort as we know that we have only three numbers: 0, 1 and 2. Here we first count how many numbers of 0, 1 and 2 are there in the array. Then we simply replace the numbers in position by first placing 0 followed by 1 and 2. This facilitates us to do the sorting in O(n) time and with constant extra space.
+const countingSort = (nums: Array<number>): void  => {
+    let zeroCount = 0;
+    let oneCount = 0;
+    let twoCount= 0;
 
-    let i = lb;
-
-    for(let j=i+1; j<=ub; j++){
-        if(nums[j] <= pivot){
-            i++;
-            [nums[i], nums[j]] = [nums[j], nums[i]];
-        }
+    // * Counting number of zeros, ones and twos.
+    for(let num of nums) {
+        if(num === 0) zeroCount++;
+        else if(num === 1) oneCount++;
+        else if(num === 2) twoCount++;
     }
 
-    [nums[i], nums[lb]] = [nums[lb], nums[i]];
+    let currentPosition = 0;
 
-    return i;
-};
+    // * Putting zeros in its correct places.
+    while(zeroCount > 0 && currentPosition < nums.length){
+        nums[currentPosition] = 0;
+        zeroCount--;
+        currentPosition++;
+    }
 
-// * This function basically implements the quick sort algorithm.
-const quickSort = (nums: Array<number>, lb: number, ub: number) => {
-    if(lb < ub) {
-        const pivot = partition(nums, lb, ub);
+    // * Putting ones in its correct places.
+    while(oneCount > 0 && currentPosition < nums.length){
+        nums[currentPosition] = 1;
+        oneCount--;
+        currentPosition++;
+    }
 
-        quickSort(nums, lb, pivot - 1);
-        quickSort(nums, pivot + 1, ub);
+    // * Putting two in its correct places.
+    while(twoCount > 0 && currentPosition < nums.length){
+        nums[currentPosition] = 2;
+        twoCount--;
+        currentPosition++;
     }
 }
 
+
 const sortColors = (nums: Array<number>): void => {
-    quickSort(nums, 0, nums.length - 1);
+    countingSort(nums);
 }
 
 
