@@ -29,7 +29,7 @@ const getMajorityElement = (nums: Array<number>): number => {
         }
     }
 
-    // * NOTE: According to Moore's algo, if the currentCount is less than or equal to one, we can conclude that no majority element exists in the array.
+    // * NOTE: According to Moore's algo, if the currentCount is less than or equal to zero, we can conclude that no majority element exists in the array.
 
     let candidateCount = 0;
 
