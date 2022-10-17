@@ -5,6 +5,8 @@
     ! Space Complexity: O(m + n) -> m = length of array one & n = length of array two.
 
     ! Note: A Space Optized Approach has been given below with the name as spaceOptimizedMedianSortedArrays.
+
+    ! Note: The best optimized approach has been mentioned in the next file /optimized-approach.ts
 */
 
 const findMedianSortedArrays = (nums1: Array<number>, nums2: Array<number>): number => {
