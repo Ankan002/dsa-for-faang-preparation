@@ -36,8 +36,8 @@ const divide = (dividend: number, divisor: number): number => {
             quotient += count;
 
             // * Finally we double up the current divisor & the count as its very simple if we double the current divisor & divide the divident then we would need to double the quotient count.
-            currentDivisor += currentDivisor;
-            count += count;
+            currentDivisor += (currentDivisor + currentDivisor);
+            count += (count + count);
             
         }
     }
