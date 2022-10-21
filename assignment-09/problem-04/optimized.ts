@@ -5,6 +5,8 @@
     ! Space Complexity: O(1)
 
     ! Approach: Simplified Bitwise shift
+
+    ! Note: check mathematical-approach.ts for most optimized solution.
 */
 
 const divide = (dividend: number, divisor: number): number => {
