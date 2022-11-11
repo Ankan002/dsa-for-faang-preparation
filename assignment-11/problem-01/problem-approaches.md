@@ -32,7 +32,7 @@ Q2: []
     Q2: []
 
 4. pop():
-    - Dequeuing Q1 til n-1 length and enqueuing them in Q2
+    - Dequeuing Q1 till n-1 length and enqueuing them in Q2
         Q1: [3]
         Q2: [1,2]
 
@@ -55,7 +55,7 @@ Q2: []
 - Take two queues q1 and q2.
 - During push operation we will try to place the pushed element in the front, so that we can dequeue it when pop operation is required.
 - To achieve this first we will dequeue all element from q1 and enqueue them to q2.
-- Then enqueue the ruired element to q1.
+- Then enqueue the required element to q1.
 - Finally dequeue all elements from q2 and enqueue them back in q1.
 - During pop operation we can simply dequeue the first element from q1.
 - Time Complexity for `PUSH` operation is O(n) & for `POP` operation is O(1).
