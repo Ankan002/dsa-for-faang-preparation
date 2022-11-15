@@ -19,8 +19,8 @@ class HashTable {
         return characterOrdValue % this.MAX_SIZE;
     }
 
-    linearProbe(indexGeneratedByHashFunction: number, numOfFailure: number): number {
-        return ((indexGeneratedByHashFunction + numOfFailure) % this.MAX_SIZE);
+    quadraticProbe(indexGeneratedByHashFunction: number, numOfFailure: number): number {
+        return (indexGeneratedByHashFunction + (1 * numOfFailure) + ((1 * numOfFailure) ** 2)) % this.MAX_SIZE;
     }
 
     addNum(key: string,val: number): void {
@@ -35,9 +35,9 @@ class HashTable {
         }
 
         for(let i=1; i<=this.MAX_SIZE; i++){
-            let probedIndex = this.linearProbe(hashIndex, i);
+            let probedIndex = this.quadraticProbe(hashIndex, i);
 
-            if(!this.numArray[probedIndex]){
+            if(!this.numArray[probedIndex]) {
                 this.numArray[probedIndex] = [key, val];
                 this.NUMBER_OF_SPACES_OCCUPIED++;
                 return;
@@ -54,7 +54,7 @@ class HashTable {
         if(this.numArray[hashIndex][0] === key) return this.numArray[hashIndex][1];
 
         for(let i=1; i<=this.MAX_SIZE; i++){
-            let probedIndex = this.linearProbe(hashIndex, i);
+            let probedIndex = this.quadraticProbe(hashIndex, i);
 
             if(this.numArray[probedIndex] && this.numArray[probedIndex][0] === key) return this.numArray[probedIndex][1];
         }
@@ -73,7 +73,7 @@ class HashTable {
         }
 
         for(let i=1;i<this.MAX_SIZE; i++){
-            let probedIndex = this.linearProbe(hashIndex, i);
+            let probedIndex = this.quadraticProbe(hashIndex, i);
 
             if(this.numArray[probedIndex] && this.numArray[probedIndex][0] === key){
                 delete this.numArray[probedIndex];
@@ -84,24 +84,23 @@ class HashTable {
     }
 }
 
-// ? Driver code
 const hashTable = new HashTable();
 
 hashTable.addNum("May 2020", 1);
 hashTable.addNum("May 2037", 2);
 hashTable.addNum("May 2033", 3);
 hashTable.addNum("May 2023", 4);
-hashTable.addNum("May 2024", 5);
+hashTable.addNum("May 2035", 5);
 hashTable.addNum("May 2025", 6);
-hashTable.addNum("May 2026", 7);
 hashTable.addNum("May 2027", 8);
 hashTable.addNum("May 2039", 9);
 hashTable.addNum("May 2029", 10);
+// ! hashTable.addNum("May 2055", 7); -> This test case will never get completed and will throw an exception. You can try it out by uncommenting it.
 
-console.log(hashTable.getNum("May 2023"));
+console.log(hashTable.getNum("May 2039"));
 console.log(hashTable.getNum("May 2027"));
-console.log(hashTable.getNum("May 2037"));
+console.log(hashTable.getNum("May 2029"));
 
-hashTable.deleteNum("May 2027");
+hashTable.deleteNum("May 2029");
 
-console.log(hashTable.getNum("May 2027"));
+console.log(hashTable.getNum("May 2029"));
